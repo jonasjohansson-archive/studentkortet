@@ -1,0 +1,92 @@
+:root {
+	--background-color: #555555;
+	--footer-height: 80px;
+	--spacing: 40px;
+}
+
+html {
+	font: 3.4vh/1.55 'Noto Sans', sans-serif;
+	background-color: var(--background-color);
+}
+
+body {
+	position: fixed;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	touch-action: none;
+}
+
+body,
+#container {
+	width: 100%;
+	height: 100%;
+}
+
+#container {
+	perspective: 600;
+	-webkit-transform: rotate(0deg);
+}
+
+/* CARD */
+
+#card,
+#card > * {
+	position: fixed;
+}
+
+#card > * {
+	width: 90%;
+	height: 100%;
+	margin-left: 5%;
+}
+
+#card {
+	width: 100%;
+	height: calc(100% - var(--footer-height));
+	display: grid;
+	align-items: center;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition-property: transform;
+	-webkit-transition-duration: 400ms;
+}
+
+#card,
+#front {
+	transform: rotateY(0deg);
+}
+
+#card.flipped,
+#back {
+	transform: rotateY(180deg);
+}
+
+.face {
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	display: inline-block;
+}
+
+#front,
+#back {
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+/* QUERY */
+
+@media (orientation: landscape) {
+	body:before {
+		position: fixed;
+		content: 'View this page in Portrait mode';
+		padding: 1rem;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: var(--background-color);
+		z-index: 999;
+	}
+}
